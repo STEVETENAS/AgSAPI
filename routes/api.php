@@ -28,9 +28,10 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
     Route::middleware(['auth','CheckRole'])->group( function () {
         Route::delete('user/{id}', [UserController::class,'destroy']);
+        Route::get('user/userId/{studId}', [UserController::class, 'getByStudId']);
         Route::get('users', [UserController::class,'index']);
     });
-    Route::get('user/userId/{studId}', [UserController::class, 'getByStudId']);
+
     Route::post('user/logout', [UserController::class,'logout']);
     Route::get('user/fname/{name}', [UserController::class,'getByFName']);
     Route::get('user/lname/{name}', [UserController::class,'getByLName']);
